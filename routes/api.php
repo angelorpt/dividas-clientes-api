@@ -18,5 +18,18 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::resource('clientes', 'ClienteController');
-Route::resource('dividas' , 'DividaController');
+Route::post('login'   , 'ApiController@login');
+Route::post('register', 'ApiController@register');
+
+
+Route::group(['middleware' => 'auth.jwt'], function () {
+
+    Route::post('logout', 'ApiController@logout');
+    Route::get ('me'    , 'ApiController@me');
+
+    Route::resource('clientes', 'ClienteController');
+    Route::resource('dividas' , 'DividaController');
+
+});
+
+
