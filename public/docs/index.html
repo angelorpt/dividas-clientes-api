@@ -1,0 +1,851 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/all.js"></script>
+
+
+          <script>
+        $(function() {
+            setupLanguages(["bash","javascript"]);
+        });
+      </script>
+      </head>
+
+  <body class="">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+        <img src="images/logo.png" />
+                    <div class="lang-selector">
+                                  <a href="#" data-language-name="bash">bash</a>
+                                  <a href="#" data-language-name="javascript">javascript</a>
+                            </div>
+                            <div class="search">
+              <input type="text" class="search" id="input-search" placeholder="Search">
+            </div>
+            <ul class="search-results"></ul>
+              <div id="toc">
+      </div>
+                    <ul class="toc-footer">
+                                  <li><a href='http://github.com/mpociot/documentarian'>Documentation Powered by Documentarian</a></li>
+                            </ul>
+            </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+          <!-- START_INFO -->
+<h1>Info</h1>
+<p>Welcome to the generated API reference.
+<a href="http://127.0.0.1:8000/docs/collection.json">Get Postman Collection</a></p>
+<!-- END_INFO -->
+<h1>Auth</h1>
+<!-- START_c3fa189a6c95ca36ad6ac4791a873d23 -->
+<h2>Login</h2>
+<p>Logs in the user, receiving the token in response</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://127.0.0.1:8000/api/login" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"email":"smith@email.com","password":"secret"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/login"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "smith@email.com",
+    "password": "secret"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "success": true,
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "success": false,
+    "message": "Invalid Email or Password"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/login</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>email</code></td>
+<td>string</td>
+<td>required</td>
+<td>Email do usuário.</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>string</td>
+<td>required</td>
+<td>Senha do usuário.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_c3fa189a6c95ca36ad6ac4791a873d23 -->
+<!-- START_d7b7952e7fdddc07c978c9bdaf757acf -->
+<h2>Register</h2>
+<p>Register a new user</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://127.0.0.1:8000/api/register" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"name":"sr smith","email":"smith@email.com","password":"secret"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/register"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "sr smith",
+    "email": "smith@email.com",
+    "password": "secret"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "success": true,
+    "data": {
+        "name": "sr smith",
+        "email": "smith@email.com",
+        "updated_at": "2020-04-28T13:28:08.000000Z",
+        "created_at": "2020-04-28T13:28:08.000000Z",
+        "id": 1
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (422):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "The given data was invalid.",
+    "errors": {
+        "email": [
+            "The email field is required."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/register</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>required</td>
+<td>User's name.</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>string</td>
+<td>required</td>
+<td>User's email.</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>string</td>
+<td>required</td>
+<td>User's password.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_d7b7952e7fdddc07c978c9bdaf757acf -->
+<!-- START_61739f3220a224b34228600649230ad1 -->
+<h2>Logout</h2>
+<p>Logout is invalidate the token</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://127.0.0.1:8000/api/logout" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/logout"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "success": true,
+    "message": "User logged out successfully"
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Token not provided"
+}</code></pre>
+<blockquote>
+<p>Example response (422):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "The given data was invalid.",
+    "errors": {
+        "token": [
+            "The token field is required."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/logout</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>token</code></td>
+<td>string</td>
+<td>required</td>
+<td>User's token.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_61739f3220a224b34228600649230ad1 -->
+<!-- START_b19e2ecbb41b5fa6802edaf581aab5f6 -->
+<h2>Me</h2>
+<p>Return the user by the token</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/api/me" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/me"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 1,
+    "name": "sr smith",
+    "email": "smith@email.com",
+    "email_verified_at": null,
+    "created_at": "2020-04-28T13:28:08.000000Z",
+    "updated_at": "2020-04-28T13:28:08.000000Z"
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Token not provided"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/me</code></p>
+<!-- END_b19e2ecbb41b5fa6802edaf581aab5f6 -->
+<h1>Clientes</h1>
+<!-- START_4708a91a0309f0ddbadd902f0e0f3767 -->
+<h2>Listar</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/api/clientes" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/clientes"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Token not provided"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/clientes</code></p>
+<!-- END_4708a91a0309f0ddbadd902f0e0f3767 -->
+<!-- START_c7130feb7007e7ce36b8fbc7584cbe58 -->
+<h2>Salvar</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://127.0.0.1:8000/api/clientes" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":1,"id_jsonph":1,"name":"Leanne Graham","username":"Bret","email":"Sincere@april.biz","phone":"1-770-736-8031 x56442","website":"hildegard.org"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/clientes"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": 1,
+    "id_jsonph": 1,
+    "name": "Leanne Graham",
+    "username": "Bret",
+    "email": "Sincere@april.biz",
+    "phone": "1-770-736-8031 x56442",
+    "website": "hildegard.org"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/clientes</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>ID do Cliente.</td>
+</tr>
+<tr>
+<td><code>id_jsonph</code></td>
+<td>integer</td>
+<td>required</td>
+<td>ID do JSON Placeholder.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>required</td>
+<td>Nome do cliente.</td>
+</tr>
+<tr>
+<td><code>username</code></td>
+<td>string</td>
+<td>required</td>
+<td>Nome de usuário.</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>string</td>
+<td>optional</td>
+<td>optional  Email do cliente.</td>
+</tr>
+<tr>
+<td><code>phone</code></td>
+<td>string</td>
+<td>optional</td>
+<td>optional  Telefone do cliente.</td>
+</tr>
+<tr>
+<td><code>website</code></td>
+<td>string</td>
+<td>optional</td>
+<td>optional  Website do cliente.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_c7130feb7007e7ce36b8fbc7584cbe58 -->
+<!-- START_d42edddc5c01411c3dddf01adb8a2f79 -->
+<h2>Consultar</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/api/clientes/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/clientes/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [App\\Models\\Cliente] 1"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/clientes/{cliente}</code></p>
+<!-- END_d42edddc5c01411c3dddf01adb8a2f79 -->
+<!-- START_84238590a7a12d110fd20345273abb25 -->
+<h2>Atualizar</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "http://127.0.0.1:8000/api/clientes/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":1,"id_jsonph":1,"name":"Leanne Graham","username":"Bret","email":"Sincere@april.biz","phone":"1-770-736-8031 x56442","website":"hildegard.org"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/clientes/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": 1,
+    "id_jsonph": 1,
+    "name": "Leanne Graham",
+    "username": "Bret",
+    "email": "Sincere@april.biz",
+    "phone": "1-770-736-8031 x56442",
+    "website": "hildegard.org"
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT api/clientes/{cliente}</code></p>
+<p><code>PATCH api/clientes/{cliente}</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>ID do Cliente.</td>
+</tr>
+<tr>
+<td><code>id_jsonph</code></td>
+<td>integer</td>
+<td>required</td>
+<td>ID do JSON Placeholder.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>required</td>
+<td>Nome do cliente.</td>
+</tr>
+<tr>
+<td><code>username</code></td>
+<td>string</td>
+<td>required</td>
+<td>Nome de usuário.</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>string</td>
+<td>optional</td>
+<td>optional  Email do cliente.</td>
+</tr>
+<tr>
+<td><code>phone</code></td>
+<td>string</td>
+<td>optional</td>
+<td>optional  Telefone do cliente.</td>
+</tr>
+<tr>
+<td><code>website</code></td>
+<td>string</td>
+<td>optional</td>
+<td>optional  Website do cliente.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_84238590a7a12d110fd20345273abb25 -->
+<!-- START_6864d4bf53f3add54af093e7fd2e8864 -->
+<h2>Delete</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://127.0.0.1:8000/api/clientes/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/clientes/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE api/clientes/{cliente}</code></p>
+<!-- END_6864d4bf53f3add54af093e7fd2e8864 -->
+<h1>Dividas</h1>
+<!-- START_4dba3b3a7a420a18d23f0faf0a1ab50a -->
+<h2>Display a listing of the resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/api/dividas" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/dividas"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Token not provided"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/dividas</code></p>
+<!-- END_4dba3b3a7a420a18d23f0faf0a1ab50a -->
+<!-- START_c022dfc28d1903d4f1439def2e8661e9 -->
+<h2>Show the form for creating a new resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/api/dividas/create" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/dividas/create"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Token not provided"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/dividas/create</code></p>
+<!-- END_c022dfc28d1903d4f1439def2e8661e9 -->
+<!-- START_c8f1d524f8a6cabaa4b0614621ee85a8 -->
+<h2>Store a newly created resource in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://127.0.0.1:8000/api/dividas" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/dividas"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/dividas</code></p>
+<!-- END_c8f1d524f8a6cabaa4b0614621ee85a8 -->
+<!-- START_33ea587cae2435c849bbcf0aa0dede95 -->
+<h2>Display the specified resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/api/dividas/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/dividas/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [App\\Models\\Divida] 1"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/dividas/{divida}</code></p>
+<!-- END_33ea587cae2435c849bbcf0aa0dede95 -->
+<!-- START_a6fd040ff2c2347e67e8d35c1a3117c2 -->
+<h2>Show the form for editing the specified resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/api/dividas/1/edit" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/dividas/1/edit"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [App\\Models\\Divida] 1"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/dividas/{divida}/edit</code></p>
+<!-- END_a6fd040ff2c2347e67e8d35c1a3117c2 -->
+<!-- START_48eeb9a5ec9460bf032808fa51ec81a9 -->
+<h2>Update the specified resource in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "http://127.0.0.1:8000/api/dividas/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/dividas/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT api/dividas/{divida}</code></p>
+<p><code>PATCH api/dividas/{divida}</code></p>
+<!-- END_48eeb9a5ec9460bf032808fa51ec81a9 -->
+<!-- START_1d5db53335f9c0417c538c04f48222a9 -->
+<h2>Remove the specified resource from storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://127.0.0.1:8000/api/dividas/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/dividas/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE api/dividas/{divida}</code></p>
+<!-- END_1d5db53335f9c0417c538c04f48222a9 -->
+      </div>
+      <div class="dark-box">
+                        <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                              </div>
+                </div>
+    </div>
+  </body>
+</html>

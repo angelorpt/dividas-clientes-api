@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 
+/**
+ * @group Clientes
+ */
 class ClienteController extends Controller
 {
     /**

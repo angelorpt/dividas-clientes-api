@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+Route::get('/teste', function ($id) {
+    
+});
+
 Route::post('login'   , 'ApiController@login');
 Route::post('register', 'ApiController@register');
 

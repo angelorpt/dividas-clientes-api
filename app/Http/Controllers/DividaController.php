@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Divida;
 use Illuminate\Http\Request;
 
+/**
+ * @group Dividas
+ */
 class DividaController extends Controller
 {
     /**
