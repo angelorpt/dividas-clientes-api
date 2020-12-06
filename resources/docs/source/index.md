@@ -446,11 +446,11 @@ fetch(url, {
 ```
 
 
-> Example response (404):
+> Example response (401):
 
 ```json
 {
-    "message": "No query results for model [App\\Models\\Cliente] 1"
+    "message": "Token not provided"
 }
 ```
 
@@ -860,11 +860,12 @@ fetch(url, {
 
 <!-- END_1d5db53335f9c0417c538c04f48222a9 -->
 
-#general
+#Integração
 
 
 <!-- START_3b226aa5724ea1394b2fd9093b5d375f -->
-## api/integracao/clientes
+## Integrar/Clientes
+
 > Example request:
 
 ```bash

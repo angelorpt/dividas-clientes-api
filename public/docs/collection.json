@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "Dividas_Clientes API",
-        "_postman_id": "4da198a8-174c-4b28-b296-c915bd603c8d",
+        "_postman_id": "fc7e3dfc-05b0-4df0-9032-b7ea5a14bed9",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -474,11 +474,11 @@
             ]
         },
         {
-            "name": "general",
+            "name": "Integra\u00e7\u00e3o",
             "description": "",
             "item": [
                 {
-                    "name": "api\/integracao\/clientes",
+                    "name": "Integrar\/Clientes",
                     "request": {
                         "url": {
                             "protocol": "http",
