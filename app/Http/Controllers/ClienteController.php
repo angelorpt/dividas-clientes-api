@@ -23,11 +23,22 @@ class ClienteController extends Controller
 
     /**
      * Consultar
+     * 
+     * @urlParam id required ID do Cliente. Example: 1
      *
      */
-    public function show(Cliente $cliente)
+    public function show($id)
     {
-        //
+        $cliente = Cliente::find($id);
+        if (!$cliente) {
+            $result = [
+                'success' => false,
+                'message' => 'Cliente não encontrado'
+            ];
+            return response()->json($result, 404);
+        }
+
+        return $cliente;
     }    
 
     /**
@@ -41,19 +52,19 @@ class ClienteController extends Controller
      * @bodyParam phone      string   optional  Telefone do cliente. Example: 1-770-736-8031 x56442
      * @bodyParam website    string   optional  Website do cliente. Example: hildegard.org
      */
-    public function store(Request $request)
-    {
-        request()->validate([
-            'id'         => 'required|integer',
-            'id_jsonph'  => 'required|integer',
-            'name'       => 'required|string|max:150',
-            'username'   => 'required|string|max:50',
-            'email'      => 'nullable|string|max:100',
-            'phone'      => 'nullable|string|max:30',
-            'website'    => 'nullable|string|max:50',
-        ]);
+    // public function store(Request $request)
+    // {
+    //     request()->validate([
+    //         'id'         => 'required|integer',
+    //         'id_jsonph'  => 'required|integer',
+    //         'name'       => 'required|string|max:150',
+    //         'username'   => 'required|string|max:50',
+    //         'email'      => 'nullable|string|max:100',
+    //         'phone'      => 'nullable|string|max:30',
+    //         'website'    => 'nullable|string|max:50',
+    //     ]);
 
-    }
+    // }
 
     /**
      * Atualizar
@@ -66,17 +77,41 @@ class ClienteController extends Controller
      * @bodyParam phone      string   optional  Telefone do cliente. Example: 1-770-736-8031 x56442
      * @bodyParam website    string   optional  Website do cliente. Example: hildegard.org
      */
-    public function update(Request $request, Cliente $cliente)
-    {
-        //
-    }
+    // public function update(Request $request, Cliente $cliente)
+    // {
+    //     request()->validate([
+    //         'id'         => 'required|integer',
+    //         'id_jsonph'  => 'required|integer',
+    //         'name'       => 'required|string|max:150',
+    //         'username'   => 'required|string|max:50',
+    //         'email'      => 'nullable|string|max:100',
+    //         'phone'      => 'nullable|string|max:30',
+    //         'website'    => 'nullable|string|max:50',
+    //     ]);
+    // }
 
     /**
      * Delete
+     * 
+     * @urlParam id required ID do Cliente. Example: 1
      *
      */
-    public function destroy(Cliente $cliente)
+    public function destroy($id)
     {
-        //
+        $cliente = Cliente::find($id);
+        if (!$cliente) {
+            $result = [
+                'success' => false,
+                'message' => 'Cliente não encontrado'
+            ];
+            return response()->json($result, 404);
+        }
+
+        $cliente->delete();
+        $result = [
+            'success' => true,
+            'message' => 'Cliente Deletado com Sucesso'
+        ];
+        return response()->json($result, 200);
     }
 }
