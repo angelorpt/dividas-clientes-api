@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cliente;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
+use App\Models\Cliente;
 
 /**
  * @group Clientes

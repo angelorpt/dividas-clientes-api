@@ -22,15 +22,23 @@ Route::get('/teste', function ($id) {
     
 });
 
-Route::post('login'   , 'ApiController@login');
-Route::post('register', 'ApiController@register');
+Route::post('login'   , 'Acesso\\ApiController@login');
+Route::post('register', 'Acesso\\ApiController@register');
 
 
 Route::group(['middleware' => 'auth.jwt'], function () {
 
-    Route::post('logout', 'ApiController@logout');
-    Route::get ('me'    , 'ApiController@me');
+    Route::post('logout', 'Acesso\\ApiController@logout');
+    Route::get ('me'    , 'Acesso\\ApiController@me');
+    
+    // ------------------------------------------------
+    // Integrações
+    // ------------------------------------------------
+    Route::put ('integracao/clientes'    , 'Integracao\\IntegracaoController@integrarClientes');
 
+    // ------------------------------------------------
+    // Dados
+    // ------------------------------------------------
     Route::resource('clientes', 'ClienteController');
     Route::resource('dividas' , 'DividaController');
 

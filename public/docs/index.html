@@ -839,6 +839,34 @@ fetch(url, {
 <h3>HTTP Request</h3>
 <p><code>DELETE api/dividas/{divida}</code></p>
 <!-- END_1d5db53335f9c0417c538c04f48222a9 -->
+<h1>general</h1>
+<!-- START_3b226aa5724ea1394b2fd9093b5d375f -->
+<h2>api/integracao/clientes</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "http://127.0.0.1:8000/api/integracao/clientes" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/integracao/clientes"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT api/integracao/clientes</code></p>
+<!-- END_3b226aa5724ea1394b2fd9093b5d375f -->
       </div>
       <div class="dark-box">
                         <div class="lang-selector">

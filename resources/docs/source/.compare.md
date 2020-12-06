@@ -860,4 +860,44 @@ fetch(url, {
 
 <!-- END_1d5db53335f9c0417c538c04f48222a9 -->
 
+#general
+
+
+<!-- START_3b226aa5724ea1394b2fd9093b5d375f -->
+## api/integracao/clientes
+> Example request:
+
+```bash
+curl -X PUT \
+    "http://127.0.0.1:8000/api/integracao/clientes" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "http://127.0.0.1:8000/api/integracao/clientes"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`PUT api/integracao/clientes`
+
+
+<!-- END_3b226aa5724ea1394b2fd9093b5d375f -->
+
 

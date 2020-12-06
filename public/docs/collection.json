@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "Dividas_Clientes API",
-        "_postman_id": "db5d3d8a-7632-4505-ae5d-532e06d07bf3",
+        "_postman_id": "4da198a8-174c-4b28-b296-c915bd603c8d",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -453,6 +453,40 @@
                             "query": []
                         },
                         "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "general",
+            "description": "",
+            "item": [
+                {
+                    "name": "api\/integracao\/clientes",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "127.0.0.1:8000",
+                            "path": "api\/integracao\/clientes",
+                            "query": []
+                        },
+                        "method": "PUT",
                         "header": [
                             {
                                 "key": "Content-Type",
