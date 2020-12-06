@@ -18,7 +18,7 @@ class CreateDividasTable extends Migration
 
             // CLIENTE ID
             $table->unsignedBigInteger('cliente_id');
-            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
 
             $table->string('motivo', 100);
             $table->date('data');
