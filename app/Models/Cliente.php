@@ -14,4 +14,9 @@ class Cliente extends Model
                             , 'phone'
                             , 'website'
                             ];
+
+    Public Function dividas()
+    {
+        return $this->hasMany('App\Models\Divida', 'cliente_id', 'id');
+    }                            
 }

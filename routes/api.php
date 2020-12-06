@@ -37,9 +37,11 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::put ('integracao/clientes'    , 'Integracao\\IntegracaoController@integrarClientes');
 
     // ------------------------------------------------
-    // Dados
+    // Clientes / Dividas
     // ------------------------------------------------
-    Route::resource('clientes', 'ClienteController');
+    Route::get     ('clientes/{id}/dividas', 'ClienteController@dividas');
+    Route::resource('clientes'             , 'ClienteController');
+
     Route::resource('dividas' , 'DividaController');
 
 });

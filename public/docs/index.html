@@ -59,7 +59,7 @@
     "http://127.0.0.1:8000/api/login" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"email":"smith@email.com","password":"secret"}'
+    -d '{"email":"admin@email.com","password":"admin"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://127.0.0.1:8000/api/login"
@@ -71,8 +71,8 @@ let headers = {
 };
 
 let body = {
-    "email": "smith@email.com",
-    "password": "secret"
+    "email": "admin@email.com",
+    "password": "admin"
 }
 
 fetch(url, {
@@ -340,6 +340,57 @@ fetch(url, {
 <p><code>GET api/me</code></p>
 <!-- END_b19e2ecbb41b5fa6802edaf581aab5f6 -->
 <h1>Clientes</h1>
+<!-- START_ac00975e5466c8f2738ab98a7c964728 -->
+<h2>Dividas</h2>
+<p>Retorna a lista de dívidas de um cliente</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/api/clientes/1/dividas" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/clientes/1/dividas"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Token not provided"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/clientes/{id}/dividas</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>required</td>
+<td>ID do Cliente.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_ac00975e5466c8f2738ab98a7c964728 -->
 <!-- START_4708a91a0309f0ddbadd902f0e0f3767 -->
 <h2>Listar</h2>
 <blockquote>
@@ -373,101 +424,6 @@ fetch(url, {
 <h3>HTTP Request</h3>
 <p><code>GET api/clientes</code></p>
 <!-- END_4708a91a0309f0ddbadd902f0e0f3767 -->
-<!-- START_c7130feb7007e7ce36b8fbc7584cbe58 -->
-<h2>Salvar</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X POST \
-    "http://127.0.0.1:8000/api/clientes" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json" \
-    -d '{"id":1,"id_jsonph":1,"name":"Leanne Graham","username":"Bret","email":"Sincere@april.biz","phone":"1-770-736-8031 x56442","website":"hildegard.org"}'
-</code></pre>
-<pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/clientes"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "id": 1,
-    "id_jsonph": 1,
-    "name": "Leanne Graham",
-    "username": "Bret",
-    "email": "Sincere@april.biz",
-    "phone": "1-770-736-8031 x56442",
-    "website": "hildegard.org"
-}
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-    body: body
-})
-    .then(response =&gt; response.json())
-    .then(json =&gt; console.log(json));</code></pre>
-<h3>HTTP Request</h3>
-<p><code>POST api/clientes</code></p>
-<h4>Body Parameters</h4>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Status</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>id</code></td>
-<td>integer</td>
-<td>required</td>
-<td>ID do Cliente.</td>
-</tr>
-<tr>
-<td><code>id_jsonph</code></td>
-<td>integer</td>
-<td>required</td>
-<td>ID do JSON Placeholder.</td>
-</tr>
-<tr>
-<td><code>name</code></td>
-<td>string</td>
-<td>required</td>
-<td>Nome do cliente.</td>
-</tr>
-<tr>
-<td><code>username</code></td>
-<td>string</td>
-<td>required</td>
-<td>Nome de usuário.</td>
-</tr>
-<tr>
-<td><code>email</code></td>
-<td>string</td>
-<td>optional</td>
-<td>optional  Email do cliente.</td>
-</tr>
-<tr>
-<td><code>phone</code></td>
-<td>string</td>
-<td>optional</td>
-<td>optional  Telefone do cliente.</td>
-</tr>
-<tr>
-<td><code>website</code></td>
-<td>string</td>
-<td>optional</td>
-<td>optional  Website do cliente.</td>
-</tr>
-</tbody>
-</table>
-<!-- END_c7130feb7007e7ce36b8fbc7584cbe58 -->
 <!-- START_d42edddc5c01411c3dddf01adb8a2f79 -->
 <h2>Consultar</h2>
 <blockquote>
@@ -500,53 +456,11 @@ fetch(url, {
 }</code></pre>
 <h3>HTTP Request</h3>
 <p><code>GET api/clientes/{cliente}</code></p>
-<!-- END_d42edddc5c01411c3dddf01adb8a2f79 -->
-<!-- START_84238590a7a12d110fd20345273abb25 -->
-<h2>Atualizar</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X PUT \
-    "http://127.0.0.1:8000/api/clientes/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json" \
-    -d '{"id":1,"id_jsonph":1,"name":"Leanne Graham","username":"Bret","email":"Sincere@april.biz","phone":"1-770-736-8031 x56442","website":"hildegard.org"}'
-</code></pre>
-<pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/clientes/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "id": 1,
-    "id_jsonph": 1,
-    "name": "Leanne Graham",
-    "username": "Bret",
-    "email": "Sincere@april.biz",
-    "phone": "1-770-736-8031 x56442",
-    "website": "hildegard.org"
-}
-
-fetch(url, {
-    method: "PUT",
-    headers: headers,
-    body: body
-})
-    .then(response =&gt; response.json())
-    .then(json =&gt; console.log(json));</code></pre>
-<h3>HTTP Request</h3>
-<p><code>PUT api/clientes/{cliente}</code></p>
-<p><code>PATCH api/clientes/{cliente}</code></p>
-<h4>Body Parameters</h4>
+<h4>URL Parameters</h4>
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
-<th>Type</th>
 <th>Status</th>
 <th>Description</th>
 </tr>
@@ -554,49 +468,12 @@ fetch(url, {
 <tbody>
 <tr>
 <td><code>id</code></td>
-<td>integer</td>
 <td>required</td>
 <td>ID do Cliente.</td>
 </tr>
-<tr>
-<td><code>id_jsonph</code></td>
-<td>integer</td>
-<td>required</td>
-<td>ID do JSON Placeholder.</td>
-</tr>
-<tr>
-<td><code>name</code></td>
-<td>string</td>
-<td>required</td>
-<td>Nome do cliente.</td>
-</tr>
-<tr>
-<td><code>username</code></td>
-<td>string</td>
-<td>required</td>
-<td>Nome de usuário.</td>
-</tr>
-<tr>
-<td><code>email</code></td>
-<td>string</td>
-<td>optional</td>
-<td>optional  Email do cliente.</td>
-</tr>
-<tr>
-<td><code>phone</code></td>
-<td>string</td>
-<td>optional</td>
-<td>optional  Telefone do cliente.</td>
-</tr>
-<tr>
-<td><code>website</code></td>
-<td>string</td>
-<td>optional</td>
-<td>optional  Website do cliente.</td>
-</tr>
 </tbody>
 </table>
-<!-- END_84238590a7a12d110fd20345273abb25 -->
+<!-- END_d42edddc5c01411c3dddf01adb8a2f79 -->
 <!-- START_6864d4bf53f3add54af093e7fd2e8864 -->
 <h2>Delete</h2>
 <blockquote>
@@ -623,10 +500,27 @@ fetch(url, {
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
 <p><code>DELETE api/clientes/{cliente}</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>required</td>
+<td>ID do Cliente.</td>
+</tr>
+</tbody>
+</table>
 <!-- END_6864d4bf53f3add54af093e7fd2e8864 -->
 <h1>Dividas</h1>
 <!-- START_4dba3b3a7a420a18d23f0faf0a1ab50a -->
-<h2>Display a listing of the resource.</h2>
+<h2>Listar</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -658,48 +552,17 @@ fetch(url, {
 <h3>HTTP Request</h3>
 <p><code>GET api/dividas</code></p>
 <!-- END_4dba3b3a7a420a18d23f0faf0a1ab50a -->
-<!-- START_c022dfc28d1903d4f1439def2e8661e9 -->
-<h2>Show the form for creating a new resource.</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET \
-    -G "http://127.0.0.1:8000/api/dividas/create" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/dividas/create"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response =&gt; response.json())
-    .then(json =&gt; console.log(json));</code></pre>
-<blockquote>
-<p>Example response (401):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "Token not provided"
-}</code></pre>
-<h3>HTTP Request</h3>
-<p><code>GET api/dividas/create</code></p>
-<!-- END_c022dfc28d1903d4f1439def2e8661e9 -->
 <!-- START_c8f1d524f8a6cabaa4b0614621ee85a8 -->
-<h2>Store a newly created resource in storage.</h2>
+<h2>Salvar</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
     "http://127.0.0.1:8000/api/dividas" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"</code></pre>
+    -H "Accept: application/json" \
+    -d '{"motivo":"Compra de telefone","data":"2020-12-03","valor":"1299.90","cliente_id":1}'
+</code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://127.0.0.1:8000/api/dividas"
 );
@@ -709,17 +572,62 @@ let headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "motivo": "Compra de telefone",
+    "data": "2020-12-03",
+    "valor": "1299.90",
+    "cliente_id": 1
+}
+
 fetch(url, {
     method: "POST",
     headers: headers,
+    body: body
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
 <p><code>POST api/dividas</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>motivo</code></td>
+<td>string</td>
+<td>required</td>
+<td>Motivo da Dívida.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>date</td>
+<td>required</td>
+<td>Data da Dívida.</td>
+</tr>
+<tr>
+<td><code>valor</code></td>
+<td>numeric</td>
+<td>required</td>
+<td>Valor da Dívida.</td>
+</tr>
+<tr>
+<td><code>cliente_id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>ID do Cliente.</td>
+</tr>
+</tbody>
+</table>
 <!-- END_c8f1d524f8a6cabaa4b0614621ee85a8 -->
 <!-- START_33ea587cae2435c849bbcf0aa0dede95 -->
-<h2>Display the specified resource.</h2>
+<h2>Consultar</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -743,56 +651,42 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <blockquote>
-<p>Example response (404):</p>
+<p>Example response (401):</p>
 </blockquote>
 <pre><code class="language-json">{
-    "message": "No query results for model [App\\Models\\Divida] 1"
+    "message": "Token not provided"
 }</code></pre>
 <h3>HTTP Request</h3>
 <p><code>GET api/dividas/{divida}</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>required</td>
+<td>ID da Dívida.</td>
+</tr>
+</tbody>
+</table>
 <!-- END_33ea587cae2435c849bbcf0aa0dede95 -->
-<!-- START_a6fd040ff2c2347e67e8d35c1a3117c2 -->
-<h2>Show the form for editing the specified resource.</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET \
-    -G "http://127.0.0.1:8000/api/dividas/1/edit" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/dividas/1/edit"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response =&gt; response.json())
-    .then(json =&gt; console.log(json));</code></pre>
-<blockquote>
-<p>Example response (404):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "No query results for model [App\\Models\\Divida] 1"
-}</code></pre>
-<h3>HTTP Request</h3>
-<p><code>GET api/dividas/{divida}/edit</code></p>
-<!-- END_a6fd040ff2c2347e67e8d35c1a3117c2 -->
 <!-- START_48eeb9a5ec9460bf032808fa51ec81a9 -->
-<h2>Update the specified resource in storage.</h2>
+<h2>Atualizar</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
     "http://127.0.0.1:8000/api/dividas/1" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"</code></pre>
+    -H "Accept: application/json" \
+    -d '{"motivo":"Compra de telefone","data":"2020-12-03","valor":"1299.90","cliente_id":1}'
+</code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://127.0.0.1:8000/api/dividas/1"
 );
@@ -802,18 +696,80 @@ let headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "motivo": "Compra de telefone",
+    "data": "2020-12-03",
+    "valor": "1299.90",
+    "cliente_id": 1
+}
+
 fetch(url, {
     method: "PUT",
     headers: headers,
+    body: body
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
 <p><code>PUT api/dividas/{divida}</code></p>
 <p><code>PATCH api/dividas/{divida}</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>required</td>
+<td>ID da Dívida.</td>
+</tr>
+</tbody>
+</table>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>motivo</code></td>
+<td>string</td>
+<td>required</td>
+<td>Motivo da Dívida.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>date</td>
+<td>required</td>
+<td>Data da Dívida.</td>
+</tr>
+<tr>
+<td><code>valor</code></td>
+<td>numeric</td>
+<td>required</td>
+<td>Valor da Dívida.</td>
+</tr>
+<tr>
+<td><code>cliente_id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>ID do Cliente.</td>
+</tr>
+</tbody>
+</table>
 <!-- END_48eeb9a5ec9460bf032808fa51ec81a9 -->
 <!-- START_1d5db53335f9c0417c538c04f48222a9 -->
-<h2>Remove the specified resource from storage.</h2>
+<h2>Deletar</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -838,6 +794,23 @@ fetch(url, {
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
 <p><code>DELETE api/dividas/{divida}</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>required</td>
+<td>ID da Dívida.</td>
+</tr>
+</tbody>
+</table>
 <!-- END_1d5db53335f9c0417c538c04f48222a9 -->
 <h1>Integração</h1>
 <!-- START_3b226aa5724ea1394b2fd9093b5d375f -->

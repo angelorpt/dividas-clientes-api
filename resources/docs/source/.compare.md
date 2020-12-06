@@ -34,7 +34,7 @@ curl -X POST \
     "http://127.0.0.1:8000/api/login" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"email":"smith@email.com","password":"secret"}'
+    -d '{"email":"admin@email.com","password":"admin"}'
 
 ```
 
@@ -49,8 +49,8 @@ let headers = {
 };
 
 let body = {
-    "email": "smith@email.com",
-    "password": "secret"
+    "email": "admin@email.com",
+    "password": "admin"
 }
 
 fetch(url, {
@@ -309,6 +309,58 @@ fetch(url, {
 #Clientes
 
 
+<!-- START_ac00975e5466c8f2738ab98a7c964728 -->
+## Dividas
+
+Retorna a lista de dívidas de um cliente
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "http://127.0.0.1:8000/api/clientes/1/dividas" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "http://127.0.0.1:8000/api/clientes/1/dividas"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (401):
+
+```json
+{
+    "message": "Token not provided"
+}
+```
+
+### HTTP Request
+`GET api/clientes/{id}/dividas`
+
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `id` |  required  | ID do Cliente.
+
+<!-- END_ac00975e5466c8f2738ab98a7c964728 -->
+
 <!-- START_4708a91a0309f0ddbadd902f0e0f3767 -->
 ## Listar
 
@@ -354,67 +406,6 @@ fetch(url, {
 
 <!-- END_4708a91a0309f0ddbadd902f0e0f3767 -->
 
-<!-- START_c7130feb7007e7ce36b8fbc7584cbe58 -->
-## Salvar
-
-> Example request:
-
-```bash
-curl -X POST \
-    "http://127.0.0.1:8000/api/clientes" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json" \
-    -d '{"id":1,"id_jsonph":1,"name":"Leanne Graham","username":"Bret","email":"Sincere@april.biz","phone":"1-770-736-8031 x56442","website":"hildegard.org"}'
-
-```
-
-```javascript
-const url = new URL(
-    "http://127.0.0.1:8000/api/clientes"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "id": 1,
-    "id_jsonph": 1,
-    "name": "Leanne Graham",
-    "username": "Bret",
-    "email": "Sincere@april.biz",
-    "phone": "1-770-736-8031 x56442",
-    "website": "hildegard.org"
-}
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-    body: body
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST api/clientes`
-
-#### Body Parameters
-Parameter | Type | Status | Description
---------- | ------- | ------- | ------- | -----------
-    `id` | integer |  required  | ID do Cliente.
-        `id_jsonph` | integer |  required  | ID do JSON Placeholder.
-        `name` | string |  required  | Nome do cliente.
-        `username` | string |  required  | Nome de usuário.
-        `email` | string |  optional  | optional  Email do cliente.
-        `phone` | string |  optional  | optional  Telefone do cliente.
-        `website` | string |  optional  | optional  Website do cliente.
-    
-<!-- END_c7130feb7007e7ce36b8fbc7584cbe58 -->
-
 <!-- START_d42edddc5c01411c3dddf01adb8a2f79 -->
 ## Consultar
 
@@ -457,71 +448,13 @@ fetch(url, {
 ### HTTP Request
 `GET api/clientes/{cliente}`
 
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `id` |  required  | ID do Cliente.
 
 <!-- END_d42edddc5c01411c3dddf01adb8a2f79 -->
-
-<!-- START_84238590a7a12d110fd20345273abb25 -->
-## Atualizar
-
-> Example request:
-
-```bash
-curl -X PUT \
-    "http://127.0.0.1:8000/api/clientes/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json" \
-    -d '{"id":1,"id_jsonph":1,"name":"Leanne Graham","username":"Bret","email":"Sincere@april.biz","phone":"1-770-736-8031 x56442","website":"hildegard.org"}'
-
-```
-
-```javascript
-const url = new URL(
-    "http://127.0.0.1:8000/api/clientes/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "id": 1,
-    "id_jsonph": 1,
-    "name": "Leanne Graham",
-    "username": "Bret",
-    "email": "Sincere@april.biz",
-    "phone": "1-770-736-8031 x56442",
-    "website": "hildegard.org"
-}
-
-fetch(url, {
-    method: "PUT",
-    headers: headers,
-    body: body
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`PUT api/clientes/{cliente}`
-
-`PATCH api/clientes/{cliente}`
-
-#### Body Parameters
-Parameter | Type | Status | Description
---------- | ------- | ------- | ------- | -----------
-    `id` | integer |  required  | ID do Cliente.
-        `id_jsonph` | integer |  required  | ID do JSON Placeholder.
-        `name` | string |  required  | Nome do cliente.
-        `username` | string |  required  | Nome de usuário.
-        `email` | string |  optional  | optional  Email do cliente.
-        `phone` | string |  optional  | optional  Telefone do cliente.
-        `website` | string |  optional  | optional  Website do cliente.
-    
-<!-- END_84238590a7a12d110fd20345273abb25 -->
 
 <!-- START_6864d4bf53f3add54af093e7fd2e8864 -->
 ## Delete
@@ -558,6 +491,11 @@ fetch(url, {
 ### HTTP Request
 `DELETE api/clientes/{cliente}`
 
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `id` |  required  | ID do Cliente.
 
 <!-- END_6864d4bf53f3add54af093e7fd2e8864 -->
 
@@ -565,7 +503,7 @@ fetch(url, {
 
 
 <!-- START_4dba3b3a7a420a18d23f0faf0a1ab50a -->
-## Display a listing of the resource.
+## Listar
 
 > Example request:
 
@@ -609,53 +547,8 @@ fetch(url, {
 
 <!-- END_4dba3b3a7a420a18d23f0faf0a1ab50a -->
 
-<!-- START_c022dfc28d1903d4f1439def2e8661e9 -->
-## Show the form for creating a new resource.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "http://127.0.0.1:8000/api/dividas/create" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "http://127.0.0.1:8000/api/dividas/create"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (401):
-
-```json
-{
-    "message": "Token not provided"
-}
-```
-
-### HTTP Request
-`GET api/dividas/create`
-
-
-<!-- END_c022dfc28d1903d4f1439def2e8661e9 -->
-
 <!-- START_c8f1d524f8a6cabaa4b0614621ee85a8 -->
-## Store a newly created resource in storage.
+## Salvar
 
 > Example request:
 
@@ -663,7 +556,9 @@ fetch(url, {
 curl -X POST \
     "http://127.0.0.1:8000/api/dividas" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
+    -H "Accept: application/json" \
+    -d '{"motivo":"Compra de telefone","data":"2020-12-03","valor":"1299.90","cliente_id":1}'
+
 ```
 
 ```javascript
@@ -676,9 +571,17 @@ let headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "motivo": "Compra de telefone",
+    "data": "2020-12-03",
+    "valor": "1299.90",
+    "cliente_id": 1
+}
+
 fetch(url, {
     method: "POST",
     headers: headers,
+    body: body
 })
     .then(response => response.json())
     .then(json => console.log(json));
@@ -689,11 +592,18 @@ fetch(url, {
 ### HTTP Request
 `POST api/dividas`
 
-
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `motivo` | string |  required  | Motivo da Dívida.
+        `data` | date |  required  | Data da Dívida.
+        `valor` | numeric |  required  | Valor da Dívida.
+        `cliente_id` | integer |  required  | ID do Cliente.
+    
 <!-- END_c8f1d524f8a6cabaa4b0614621ee85a8 -->
 
 <!-- START_33ea587cae2435c849bbcf0aa0dede95 -->
-## Display the specified resource.
+## Consultar
 
 > Example request:
 
@@ -723,67 +633,27 @@ fetch(url, {
 ```
 
 
-> Example response (404):
+> Example response (401):
 
 ```json
 {
-    "message": "No query results for model [App\\Models\\Divida] 1"
+    "message": "Token not provided"
 }
 ```
 
 ### HTTP Request
 `GET api/dividas/{divida}`
 
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `id` |  required  | ID da Dívida.
 
 <!-- END_33ea587cae2435c849bbcf0aa0dede95 -->
 
-<!-- START_a6fd040ff2c2347e67e8d35c1a3117c2 -->
-## Show the form for editing the specified resource.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "http://127.0.0.1:8000/api/dividas/1/edit" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "http://127.0.0.1:8000/api/dividas/1/edit"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (404):
-
-```json
-{
-    "message": "No query results for model [App\\Models\\Divida] 1"
-}
-```
-
-### HTTP Request
-`GET api/dividas/{divida}/edit`
-
-
-<!-- END_a6fd040ff2c2347e67e8d35c1a3117c2 -->
-
 <!-- START_48eeb9a5ec9460bf032808fa51ec81a9 -->
-## Update the specified resource in storage.
+## Atualizar
 
 > Example request:
 
@@ -791,7 +661,9 @@ fetch(url, {
 curl -X PUT \
     "http://127.0.0.1:8000/api/dividas/1" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
+    -H "Accept: application/json" \
+    -d '{"motivo":"Compra de telefone","data":"2020-12-03","valor":"1299.90","cliente_id":1}'
+
 ```
 
 ```javascript
@@ -804,9 +676,17 @@ let headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "motivo": "Compra de telefone",
+    "data": "2020-12-03",
+    "valor": "1299.90",
+    "cliente_id": 1
+}
+
 fetch(url, {
     method: "PUT",
     headers: headers,
+    body: body
 })
     .then(response => response.json())
     .then(json => console.log(json));
@@ -819,11 +699,23 @@ fetch(url, {
 
 `PATCH api/dividas/{divida}`
 
+#### URL Parameters
 
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `id` |  required  | ID da Dívida.
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `motivo` | string |  required  | Motivo da Dívida.
+        `data` | date |  required  | Data da Dívida.
+        `valor` | numeric |  required  | Valor da Dívida.
+        `cliente_id` | integer |  required  | ID do Cliente.
+    
 <!-- END_48eeb9a5ec9460bf032808fa51ec81a9 -->
 
 <!-- START_1d5db53335f9c0417c538c04f48222a9 -->
-## Remove the specified resource from storage.
+## Deletar
 
 > Example request:
 
@@ -857,6 +749,11 @@ fetch(url, {
 ### HTTP Request
 `DELETE api/dividas/{divida}`
 
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `id` |  required  | ID da Dívida.
 
 <!-- END_1d5db53335f9c0417c538c04f48222a9 -->
 

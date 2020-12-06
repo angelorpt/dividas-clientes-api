@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "Dividas_Clientes API",
-        "_postman_id": "fc7e3dfc-05b0-4df0-9032-b7ea5a14bed9",
+        "_postman_id": "694926f6-222d-41a8-b65a-28b82ed53cc8",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -33,7 +33,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"email\": \"smith@email.com\",\n    \"password\": \"secret\"\n}"
+                            "raw": "{\n    \"email\": \"admin@email.com\",\n    \"password\": \"admin\"\n}"
                         },
                         "description": "",
                         "response": []
@@ -130,6 +130,42 @@
             "description": "",
             "item": [
                 {
+                    "name": "Dividas",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "127.0.0.1:8000",
+                            "path": "api\/clientes\/:id\/dividas",
+                            "query": [],
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "ID do Cliente."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "Retorna a lista de d\u00edvidas de um cliente",
+                        "response": []
+                    }
+                },
+                {
                     "name": "Listar",
                     "request": {
                         "url": {
@@ -158,34 +194,6 @@
                     }
                 },
                 {
-                    "name": "Salvar",
-                    "request": {
-                        "url": {
-                            "protocol": "http",
-                            "host": "127.0.0.1:8000",
-                            "path": "api\/clientes",
-                            "query": []
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\n    \"id\": 1,\n    \"id_jsonph\": 1,\n    \"name\": \"Leanne Graham\",\n    \"username\": \"Bret\",\n    \"email\": \"Sincere@april.biz\",\n    \"phone\": \"1-770-736-8031 x56442\",\n    \"website\": \"hildegard.org\"\n}"
-                        },
-                        "description": "",
-                        "response": []
-                    }
-                },
-                {
                     "name": "Consultar",
                     "request": {
                         "url": {
@@ -208,34 +216,6 @@
                         "body": {
                             "mode": "raw",
                             "raw": "[]"
-                        },
-                        "description": "",
-                        "response": []
-                    }
-                },
-                {
-                    "name": "Atualizar",
-                    "request": {
-                        "url": {
-                            "protocol": "http",
-                            "host": "127.0.0.1:8000",
-                            "path": "api\/clientes\/:cliente",
-                            "query": []
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\n    \"id\": 1,\n    \"id_jsonph\": 1,\n    \"name\": \"Leanne Graham\",\n    \"username\": \"Bret\",\n    \"email\": \"Sincere@april.biz\",\n    \"phone\": \"1-770-736-8031 x56442\",\n    \"website\": \"hildegard.org\"\n}"
                         },
                         "description": "",
                         "response": []
@@ -276,7 +256,7 @@
             "description": "",
             "item": [
                 {
-                    "name": "Display a listing of the resource.",
+                    "name": "Listar",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -304,35 +284,7 @@
                     }
                 },
                 {
-                    "name": "Show the form for creating a new resource.",
-                    "request": {
-                        "url": {
-                            "protocol": "http",
-                            "host": "127.0.0.1:8000",
-                            "path": "api\/dividas\/create",
-                            "query": []
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "[]"
-                        },
-                        "description": "",
-                        "response": []
-                    }
-                },
-                {
-                    "name": "Store a newly created resource in storage.",
+                    "name": "Salvar",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -353,14 +305,14 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "[]"
+                            "raw": "{\n    \"motivo\": \"Compra de telefone\",\n    \"data\": \"2020-12-03\",\n    \"valor\": \"1299.90\",\n    \"cliente_id\": 1\n}"
                         },
                         "description": "",
                         "response": []
                     }
                 },
                 {
-                    "name": "Display the specified resource.",
+                    "name": "Consultar",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -388,35 +340,7 @@
                     }
                 },
                 {
-                    "name": "Show the form for editing the specified resource.",
-                    "request": {
-                        "url": {
-                            "protocol": "http",
-                            "host": "127.0.0.1:8000",
-                            "path": "api\/dividas\/:divida\/edit",
-                            "query": []
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "[]"
-                        },
-                        "description": "",
-                        "response": []
-                    }
-                },
-                {
-                    "name": "Update the specified resource in storage.",
+                    "name": "Atualizar",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -437,14 +361,14 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "[]"
+                            "raw": "{\n    \"motivo\": \"Compra de telefone\",\n    \"data\": \"2020-12-03\",\n    \"valor\": \"1299.90\",\n    \"cliente_id\": 1\n}"
                         },
                         "description": "",
                         "response": []
                     }
                 },
                 {
-                    "name": "Remove the specified resource from storage.",
+                    "name": "Deletar",
                     "request": {
                         "url": {
                             "protocol": "http",

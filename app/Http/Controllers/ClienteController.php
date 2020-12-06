@@ -114,4 +114,32 @@ class ClienteController extends Controller
         ];
         return response()->json($result, 200);
     }
+
+
+    /**
+     * Dividas
+     * 
+     * Retorna a lista de dívidas de um cliente
+     * 
+     * @urlParam id required ID do Cliente. Example: 1
+     *
+     */
+    public function dividas($id) 
+    {
+
+        $cliente = Cliente::find($id);
+        if (!$cliente) {
+            $result = [
+                'success' => false,
+                'message' => 'Cliente não encontrado'
+            ];
+            return response()->json($result, 404);
+        }
+
+        $dividas = $cliente->dividas()->get();
+        return $dividas;
+
+                
+    }
+
 }

@@ -69,8 +69,8 @@ class APIController extends Controller
      * Login
      * Logs in the user, receiving the token in response
      * 
-     * @bodyParam email string required Email do usuário. Example: smith@email.com
-     * @bodyParam password string required Senha do usuário. Example: secret
+     * @bodyParam email string required Email do usuário. Example: admin@email.com
+     * @bodyParam password string required Senha do usuário. Example: admin
      * 
      * @response 200
      * {

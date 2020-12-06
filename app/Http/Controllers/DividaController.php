@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Divida;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 /**
@@ -11,78 +12,182 @@ use Illuminate\Http\Request;
 class DividaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Listar
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return Divida::all();
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Consultar
+     * 
+     * @urlParam id required ID da Dívida. Example: 1
      *
-     * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function show($id)
     {
-        //
-    }
+        $divida = Divida::find($id);
+        if (!$divida) {
+            $result = [
+                'success' => false,
+                'message' => 'Dívida não encontrada.'
+            ];
+            return response()->json($result, 404);
+        }
+
+        return $divida;
+    }    
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Salvar
+     * 
+     * @bodyParam motivo      string   required  Motivo da Dívida. Example: Compra de telefone
+     * @bodyParam data        date     required  Data da Dívida.   Example: 2020-12-03
+     * @bodyParam valor       numeric  required  Valor da Dívida.  Example: 1299.90
+     * @bodyParam cliente_id  integer  required  ID do Cliente.    Example: 1
      */
     public function store(Request $request)
     {
-        //
+
+        // Valida a Requisição
+        // ------------------------------------------------
+        request()->validate([
+            'motivo'      => 'required|string|max:100',
+            'data'        => 'required|date',
+            'valor'       => 'required|numeric',
+            'cliente_id'  => 'required|integer',
+        ]);
+
+        // Dados da Requisição
+        // ------------------------------------------------
+        $dados = $request->json()->all();           
+        
+        // Localiza o Cliente
+        // ------------------------------------------------
+        $cliente = Cliente::find($dados['cliente_id']);
+        if (!$cliente) {
+            $result = [
+                'success' => false,
+                'message' => 'Cliente não encontrado'
+            ];
+            return response()->json($result, 404);
+        }            
+
+        // Salva a Divida
+        // ------------------------------------------------
+        if (!$divida = Divida::create($dados)) {
+            $result = [
+                'success' => false,
+                'message' => 'Falha ao Salvar a Dívida'
+            ];
+            return response()->json($result, 422);
+        }
+
+        // Retorno da API
+        // ------------------------------------------------
+        $result = [
+            'success' => true,
+            'message' => 'Dívida Salva com Sucesso',
+        	'data'    => $divida
+        ];
+        return response()->json($result, 201);
+
     }
 
     /**
-     * Display the specified resource.
+     * Atualizar
+     * 
+     * @urlParam id required ID da Dívida. Example: 1
+     * 
+     * @bodyParam motivo      string   required  Motivo da Dívida. Example: Compra de telefone
+     * @bodyParam data        date     required  Data da Dívida.   Example: 2020-12-03
+     * @bodyParam valor       numeric  required  Valor da Dívida.  Example: 1299.90
+     * @bodyParam cliente_id  integer  required  ID do Cliente.    Example: 1
      *
-     * @param  \App\Models\Divida  $divida
-     * @return \Illuminate\Http\Response
      */
-    public function show(Divida $divida)
+    public function update(Request $request, $id)
     {
-        //
+
+        // Valida a Requisição
+        // ------------------------------------------------
+        request()->validate([
+            'motivo'      => 'required|string|max:100',
+            'data'        => 'required|date',
+            'valor'       => 'required|numeric',
+            'cliente_id'  => 'required|integer',
+        ]);
+
+        // Dados da Requisição
+        // ------------------------------------------------
+        $dados = $request->json()->all();                
+
+        // Localiza o Cliente
+        // ------------------------------------------------
+        $cliente = Cliente::find($dados['cliente_id']);
+        if (!$cliente) {
+            $result = [
+                'success' => false,
+                'message' => 'Cliente não encontrado'
+            ];
+            return response()->json($result, 404);
+        }
+
+
+        // Localiza a Divida
+        // ------------------------------------------------
+        $divida = Divida::find($id);
+        if (!$divida) {
+            $result = [
+                'success' => false,
+                'message' => 'Dívida não encontrada.'
+            ];
+            return response()->json($result, 404);
+        }
+
+        
+        // Salva a Divida
+        // ------------------------------------------------
+        if (!$divida->update($dados)) {
+            $result = [
+                'success' => false,
+                'message' => 'Falha ao Salvar a Dívida'
+            ];
+            return response()->json($result, 422);
+        }
+
+        // Retorno da API
+        // ------------------------------------------------
+        $result = [
+            'success' => true,
+            'message' => 'Dívida Atualizada com Sucesso',
+        	'data'    => $divida
+        ];
+        return response()->json($result, 200);        
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Divida  $divida
-     * @return \Illuminate\Http\Response
+     * Deletar
+     * 
+     * @urlParam id required ID da Dívida. Example: 1
      */
-    public function edit(Divida $divida)
+    public function destroy($id)
     {
-        //
-    }
+        $divida = Divida::find($id);
+        if (!$divida) {
+            $result = [
+                'success' => false,
+                'message' => 'Dívida não encontrada.'
+            ];
+            return response()->json($result, 404);
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Divida  $divida
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Divida $divida)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Divida  $divida
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Divida $divida)
-    {
-        //
+        $divida->delete();
+        $result = [
+            'success' => true,
+            'message' => 'Dívida Deletada com Sucesso'
+        ];
+        return response()->json($result, 200);
     }
 }
