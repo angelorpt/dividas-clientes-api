@@ -26,7 +26,7 @@ Route::post('login'   , 'Acesso\\ApiController@login');
 Route::post('register', 'Acesso\\ApiController@register');
 
 
-Route::group(['middleware' => 'auth.jwt'], function () {
+// Route::group(['middleware' => 'auth.jwt'], function () {
 
     Route::post('logout', 'Acesso\\ApiController@logout');
     Route::get ('me'    , 'Acesso\\ApiController@me');
@@ -44,6 +44,6 @@ Route::group(['middleware' => 'auth.jwt'], function () {
 
     Route::resource('dividas' , 'DividaController');
 
-});
+// });
 
 
