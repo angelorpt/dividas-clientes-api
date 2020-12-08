@@ -18,7 +18,12 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        return Cliente::all();
+        $clientes = Cliente::all();
+        foreach ($clientes as $cliente) {
+            $dividas = $cliente->dividas()->get();
+            $cliente['total'] = $dividas->sum('valor');
+        }
+        return $clientes;
     }
 
     /**
