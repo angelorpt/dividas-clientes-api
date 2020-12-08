@@ -10,8 +10,6 @@
 
 * [Modelagem do Banco](#modelagem-do-banco)
 
-* [Documentação API](#documentação-api)
-
 ## Server Requirements
 
 [↑ Menu](#API---Dividas)
@@ -86,10 +84,3 @@
 [↑ Menu](#API---Dividas)
 
 ![Modelagem](/_modelagem/Modelagem.png)
-
-## Documentação API
-
-[↑ Menu](#API---Dividas)
-
-Você pode visualizar a documentação [aqui](/public/docs/index.html)
-
