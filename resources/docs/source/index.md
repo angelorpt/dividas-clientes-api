@@ -342,11 +342,11 @@ fetch(url, {
 ```
 
 
-> Example response (401):
+> Example response (500):
 
 ```json
 {
-    "message": "Token not provided"
+    "message": "Server Error"
 }
 ```
 
@@ -392,11 +392,11 @@ fetch(url, {
 ```
 
 
-> Example response (401):
+> Example response (500):
 
 ```json
 {
-    "message": "Token not provided"
+    "message": "Server Error"
 }
 ```
 
@@ -437,11 +437,11 @@ fetch(url, {
 ```
 
 
-> Example response (401):
+> Example response (500):
 
 ```json
 {
-    "message": "Token not provided"
+    "message": "Server Error"
 }
 ```
 
@@ -533,11 +533,11 @@ fetch(url, {
 ```
 
 
-> Example response (401):
+> Example response (500):
 
 ```json
 {
-    "message": "Token not provided"
+    "message": "Server Error"
 }
 ```
 
@@ -633,11 +633,11 @@ fetch(url, {
 ```
 
 
-> Example response (401):
+> Example response (500):
 
 ```json
 {
-    "message": "Token not provided"
+    "message": "Server Error"
 }
 ```
 
