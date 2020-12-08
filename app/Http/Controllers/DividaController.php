@@ -36,6 +36,8 @@ class DividaController extends Controller
             ];
             return response()->json($result, 404);
         }
+        $cliente = $divida->cliente()->first();
+        $divida['cliente_nome'] = $cliente->name;
 
         return $divida;
     }    
