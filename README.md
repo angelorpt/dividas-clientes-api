@@ -83,4 +83,4 @@
 
 [↑ Menu](#API---Dividas)
 
-![Modelagem](\_modelagem\Modelagem.png)
+![Modelagem](/_modelagem/Modelagem.png)
