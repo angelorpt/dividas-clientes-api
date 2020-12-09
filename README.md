@@ -57,9 +57,9 @@
 
     `touch database/database.sqlite`
 
-5. Execute as migrations para criar as tabelas no banco.
+5. Execute as migrations para criar as tabelas no banco e criar o usuário Admin.
 
-    `php artisan migrate`
+    `php artisan migrate --seed`
 
 6. Para visualizar a documentação da API, no terminal.
 
