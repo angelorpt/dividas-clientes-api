@@ -73,7 +73,9 @@
 
 7. Para executar o servidor [terminal].
 
-    `php artisan serve`
+    * Ao executar o projeto, alguns antivírus podem considerar como falso-positivo, e excluir o arquivo server.php do diretório raiz. Recomendo colocar o diretório na pasta de excessões.
+
+        `php artisan serve`
 
 ## Front-End
 
